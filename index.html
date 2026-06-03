@@ -435,7 +435,7 @@ function lookup() {
 // ── 아디다스 ──────────────────────────────
 async function fetchAdidas(code) {
   try {
-    const res = await fetch(`https://www.adidas.co.kr/api/products/${code}`, {
+    const res = await fetch(`https://corsproxy.io/?https://www.adidas.co.kr/api/products/${code}`, {
       headers: { Accept: 'application/json' }
     });
     if (!res.ok) throw new Error(res.status);
