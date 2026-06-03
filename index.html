@@ -22,14 +22,15 @@
   .tab{height:36px;padding:0 16px;border:1px solid var(--border);border-radius:6px;font-size:13px;cursor:pointer;background:var(--bg2);color:var(--text2);font-family:'IBM Plex Mono',monospace;font-weight:600;transition:all 0.15s;display:flex;align-items:center;gap:7px}
   .tab:hover{border-color:#444;color:var(--text)}
   .tab.active-adidas{background:#001a15;border-color:var(--accent);color:var(--accent)}
+  .tab.active-nike{background:#1a1a1a;border-color:#f5f5f5;color:#f5f5f5}
+  .tab.active-nb{background:#2a0a00;border-color:#cf4520;color:#cf4520}
+  .tab.active-fj{background:#0a1525;border-color:#4a8ab5;color:#4a8ab5}
   .dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0}
-  .dot-adidas{background:var(--accent)}
+  .dot-adidas{background:var(--accent)}.dot-nike{background:#f5f5f5}.dot-nb{background:#cf4520}.dot-fj{background:#4a8ab5}
 
-  /* STEP 박스 */
-  .steps{display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
-  .step{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px 20px}
-  .step-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent);font-weight:600;letter-spacing:1px;margin-bottom:8px}
-  .step-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:10px}
+  .step{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin-bottom:12px}
+  .step-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent);font-weight:600;letter-spacing:1px;margin-bottom:6px}
+  .step-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:12px}
 
   .input-row{display:flex;gap:8px}
   .input-row input{flex:1;height:42px;padding:0 14px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600;letter-spacing:1px;outline:none;transition:border-color 0.15s}
@@ -42,17 +43,24 @@
   .btn-ghost{background:transparent;color:var(--text3)}
   .btn-ghost:hover{color:var(--text);border-color:#444}
   .btn-sm{height:30px;padding:0 12px;font-size:11px}
-  .btn-paste{height:42px;padding:0 18px;border:1px solid #444;border-radius:6px;font-size:13px;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:600;background:#1a2a20;color:var(--accent);transition:all 0.15s}
-  .btn-paste:hover{background:#002a1a}
+  .btn-green{background:#1a2a20;color:var(--accent);border-color:#2a4a35;width:100%}
+  .btn-green:hover{background:#002a1a}
 
-  .url-display{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);margin-top:10px;word-break:break-all;display:none}
+  .url-box{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);margin-top:10px;word-break:break-all;display:none}
 
-  .hint{font-size:11px;color:var(--text3);margin-top:8px;line-height:1.6;font-family:'IBM Plex Mono',monospace}
+  .hint{font-size:11px;color:var(--text3);margin-top:8px;line-height:1.7;font-family:'IBM Plex Mono',monospace}
   .hint b{color:var(--text2)}
+  .hint .hi{color:var(--accent)}
 
   textarea{width:100%;height:120px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:12px;padding:12px;outline:none;resize:vertical;transition:border-color 0.15s;margin-bottom:10px}
   textarea:focus{border-color:var(--accent)}
   textarea::placeholder{color:var(--text3)}
+
+  .ra-box{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:16px 20px;line-height:1.9;font-size:13px;color:var(--text2)}
+  .ra-box b{color:var(--text)}
+  .ra-box code{background:var(--bg2);border:1px solid var(--border);padding:1px 6px;border-radius:3px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent)}
+  .ra-link{color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:12px;text-decoration:none;display:inline-block;margin-top:6px}
+  .ra-link:hover{text-decoration:underline}
 
   .status{font-size:12px;font-family:'IBM Plex Mono',monospace;min-height:18px;margin-bottom:12px}
   .status.error{color:var(--danger)}.status.ok{color:var(--accent)}
@@ -64,6 +72,7 @@
   .product-name{font-size:13px;font-weight:700;color:var(--text)}
   .badge{font-size:10px;padding:2px 8px;border-radius:4px;font-family:'IBM Plex Mono',monospace;font-weight:600;border:1px solid}
   .badge-adidas{background:#001a15;border-color:var(--accent);color:var(--accent)}
+  .badge-nike{background:#1a1a1a;border-color:#aaa;color:#ccc}
   .badge-count{background:#001a15;border-color:var(--accent);color:var(--accent)}
   .card-btns{display:flex;gap:6px}
   table{width:100%;border-collapse:collapse}
@@ -78,6 +87,7 @@
   .copy-btn.copied{color:var(--accent);border-color:var(--accent)}
   .empty-state{padding:40px 20px;text-align:center;color:var(--text3);font-family:'IBM Plex Mono',monospace;font-size:12px;border:1px dashed var(--border);border-radius:10px;line-height:2}
   .empty-state .big{font-size:26px;margin-bottom:10px;display:block}
+  .hidden{display:none}
 </style>
 </head>
 <body>
@@ -85,34 +95,89 @@
 <div class="header">
   <div>
     <div class="header-logo">GTIN LOOKUP</div>
-    <div class="header-sub">아디다스 사이즈별 GTIN(EAN) 조회 — 쿠팡 등록용</div>
+    <div class="header-sub">브랜드별 사이즈별 GTIN(EAN) 조회 — 쿠팡 등록용</div>
   </div>
 </div>
 
 <div class="main">
 
-  <!-- STEP 1 -->
-  <div class="steps">
+  <div class="brand-tabs">
+    <button class="tab active-adidas" onclick="selectBrand('adidas',this)"><span class="dot dot-adidas"></span>아디다스</button>
+    <button class="tab" onclick="selectBrand('nike',this)"><span class="dot dot-nike"></span>나이키</button>
+    <button class="tab" onclick="selectBrand('nb',this)"><span class="dot dot-nb"></span>뉴발란스</button>
+    <button class="tab" onclick="selectBrand('fj',this)"><span class="dot dot-fj"></span>풋조이</button>
+  </div>
+
+  <!-- 아디다스 -->
+  <div id="panel-adidas">
     <div class="step">
       <div class="step-num">STEP 1</div>
       <div class="step-title">품번 입력 후 API 열기</div>
       <div class="input-row">
-        <input type="text" id="codeInput" placeholder="KC9165" />
-        <button class="btn btn-primary" onclick="openAPI()">🔗 API 열기</button>
+        <input type="text" id="adidas-code" placeholder="KC9165" onkeydown="if(event.key==='Enter')adidasOpen()" />
+        <button class="btn btn-primary" onclick="adidasOpen()">🔗 API 열기</button>
       </div>
-      <div class="url-display" id="urlDisplay"></div>
-      <div class="hint">버튼 클릭 시 <b>새 탭</b>에서 아디다스 API가 열려요</div>
+      <div class="url-box" id="adidas-url"></div>
+      <div class="hint">클릭 시 <b>새 탭</b>에서 아디다스 API가 열려요</div>
     </div>
-
-    <!-- STEP 2 -->
     <div class="step">
       <div class="step-num">STEP 2</div>
-      <div class="step-title">열린 페이지 전체 복사 후 여기에 붙여넣기</div>
-      <textarea id="jsonInput" placeholder='새 탭에서 Ctrl+A → Ctrl+C 후 여기에 Ctrl+V'></textarea>
+      <div class="step-title">새 탭 전체 복사 후 붙여넣기</div>
+      <textarea id="adidas-json" placeholder="새 탭에서 Ctrl+A → Ctrl+C 후 여기에 Ctrl+V"></textarea>
+      <button class="btn btn-green" onclick="adidasParse()">✨ GTIN 추출하기</button>
+      <div class="hint"><span class="hi">Ctrl+A</span> 전체선택 → <span class="hi">Ctrl+C</span> 복사 → 여기서 <span class="hi">Ctrl+V</span></div>
+    </div>
+  </div>
+
+  <!-- 나이키 -->
+  <div id="panel-nike" class="hidden">
+    <div class="step">
+      <div class="step-num">STEP 1</div>
+      <div class="step-title">스타일코드 입력 후 상품 페이지 열기</div>
       <div class="input-row">
-        <button class="btn btn-paste" onclick="parseAndRender()" style="width:100%">✨ GTIN 추출하기</button>
+        <input type="text" id="nike-code" placeholder="IQ3417-101" onkeydown="if(event.key==='Enter')nikeOpen()" />
+        <button class="btn btn-primary" onclick="nikeOpen()">🔗 페이지 열기</button>
       </div>
-      <div class="hint">새 탭 전체 내용을 복사해서 붙여넣으면 자동으로 표를 만들어줘요</div>
+      <div class="url-box" id="nike-url"></div>
+      <div class="hint">클릭 시 <b>새 탭</b>에서 나이키 상품 페이지가 열려요</div>
+    </div>
+    <div class="step">
+      <div class="step-num">STEP 2</div>
+      <div class="step-title">페이지 소스 열고 전체 복사 후 붙여넣기</div>
+      <textarea id="nike-source" placeholder="새 탭에서 Ctrl+U → Ctrl+A → Ctrl+C 후 여기에 Ctrl+V"></textarea>
+      <button class="btn btn-green" onclick="nikeParse()">✨ GTIN 추출하기</button>
+      <div class="hint">
+        새 탭에서 <span class="hi">Ctrl+U</span> (소스보기) → <span class="hi">Ctrl+A</span> → <span class="hi">Ctrl+C</span> → 여기서 <span class="hi">Ctrl+V</span><br>
+        <b>※ 상품 페이지가 아니라 소스 페이지(Ctrl+U)에서 복사해야 해요!</b>
+      </div>
+    </div>
+  </div>
+
+  <!-- 뉴발란스 -->
+  <div id="panel-nb" class="hidden">
+    <div class="step">
+      <div class="step-num">안내</div>
+      <div class="step-title">뉴발란스 — 쿠팡 RA번호 발급</div>
+      <div class="ra-box">
+        뉴발란스 공홈은 GTIN을 외부에 노출하지 않아요.<br>
+        <b>쿠팡에서 RA번호를 발급받아 대신 사용하세요.</b><br><br>
+        쿠팡 Wing → 상품등록 → <code>바코드 없음</code> 선택 → RA번호 자동 발급<br><br>
+        <a class="ra-link" href="https://www.nbkorea.com" target="_blank">→ 뉴발란스 공홈 바로가기</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 풋조이 -->
+  <div id="panel-fj" class="hidden">
+    <div class="step">
+      <div class="step-num">안내</div>
+      <div class="step-title">풋조이 — 쿠팡 RA번호 발급</div>
+      <div class="ra-box">
+        풋조이 공홈은 GTIN을 외부에 노출하지 않아요.<br>
+        <b>쿠팡에서 RA번호를 발급받아 대신 사용하세요.</b><br><br>
+        쿠팡 Wing → 상품등록 → <code>바코드 없음</code> 선택 → RA번호 자동 발급<br><br>
+        <a class="ra-link" href="https://www.footjoy.co.kr" target="_blank">→ 풋조이 공홈 바로가기</a>
+      </div>
     </div>
   </div>
 
@@ -130,42 +195,97 @@
 
 <script>
 const allData = {};
+let currentBrand = 'adidas';
 
-function openAPI() {
-  const code = document.getElementById('codeInput').value.trim().toUpperCase();
-  if (!code) { alert('품번을 입력해주세요'); return; }
-  const url = `https://www.adidas.co.kr/api/products/${code}`;
-  document.getElementById('urlDisplay').style.display = 'block';
-  document.getElementById('urlDisplay').textContent = url;
-  window.open(url, '_blank');
-  setStatus('✓ 새 탭에서 API 열렸어요 — 전체 복사 후 STEP 2에 붙여넣기', 'ok');
+function selectBrand(brand, el) {
+  currentBrand = brand;
+  document.querySelectorAll('.tab').forEach(t => t.className = 'tab');
+  el.classList.add('active-' + brand);
+  ['adidas','nike','nb','fj'].forEach(b => {
+    document.getElementById('panel-' + b).classList.toggle('hidden', b !== brand);
+  });
+  setStatus('', '');
 }
 
-function parseAndRender() {
-  const raw = document.getElementById('jsonInput').value.trim();
-  if (!raw) { setStatus('✗ 데이터를 붙여넣어주세요', 'error'); return; }
+function setStatus(msg, type) {
+  const el = document.getElementById('status');
+  el.textContent = msg;
+  el.className = 'status' + (type ? ' ' + type : '');
+}
 
+// ── 아디다스 ──────────────────────────────
+function adidasOpen() {
+  const code = document.getElementById('adidas-code').value.trim().toUpperCase();
+  if (!code) { alert('품번을 입력해주세요'); return; }
+  const url = `https://www.adidas.co.kr/api/products/${code}`;
+  const box = document.getElementById('adidas-url');
+  box.style.display = 'block';
+  box.textContent = url;
+  window.open(url, '_blank');
+  setStatus('✓ 새 탭 열림 — 전체 복사 후 STEP 2에 붙여넣기', 'ok');
+}
+
+function adidasParse() {
+  const raw = document.getElementById('adidas-json').value.trim();
+  if (!raw) { setStatus('✗ 데이터를 붙여넣어주세요', 'error'); return; }
   try {
     const data = JSON.parse(raw);
-    const code = data.id || document.getElementById('codeInput').value.trim().toUpperCase();
-    const name = data.name || code;
-    const skus = (data.variation_list || []).map(s => ({
-      size: s.size, gtin: s.gtin, sku: s.sku
-    }));
-    if (!skus.length) throw new Error('variation_list 없음');
-
+    const code = data.id || document.getElementById('adidas-code').value.trim().toUpperCase();
+    const skus = (data.variation_list || []).map(s => ({ size: s.size, gtin: s.gtin }));
+    if (!skus.length) throw new Error('no skus');
     document.querySelector('.empty-state')?.remove();
-    renderResult(code, name, skus);
-    document.getElementById('jsonInput').value = '';
+    renderResult(code, 'adidas', data.name || code, skus);
+    document.getElementById('adidas-json').value = '';
     setStatus('✓ ' + code + ' — ' + skus.length + '개 사이즈 완료', 'ok');
   } catch(e) {
-    setStatus('✗ 데이터 형식 오류 — 새 탭 전체(Ctrl+A)를 복사했는지 확인해주세요', 'error');
+    setStatus('✗ 형식 오류 — 새 탭 전체(Ctrl+A)를 복사했는지 확인해주세요', 'error');
   }
 }
 
-function renderResult(code, name, skus) {
+// ── 나이키 ──────────────────────────────
+function nikeOpen() {
+  const code = document.getElementById('nike-code').value.trim().toUpperCase();
+  if (!code) { alert('스타일코드를 입력해주세요'); return; }
+  const url = `https://www.nike.com/kr/t/x/${code}`;
+  const box = document.getElementById('nike-url');
+  box.style.display = 'block';
+  box.textContent = url + ' → Ctrl+U 로 소스 열기';
+  window.open(url, '_blank');
+  setStatus('✓ 새 탭 열림 — Ctrl+U 소스보기 → 전체복사 → STEP 2 붙여넣기', 'ok');
+}
+
+function nikeParse() {
+  const raw = document.getElementById('nike-source').value.trim();
+  if (!raw) { setStatus('✗ 데이터를 붙여넣어주세요', 'error'); return; }
+  const code = document.getElementById('nike-code').value.trim().toUpperCase();
+
+  const skus = [];
+  const seen = new Set();
+  const re = /"size"\s*:\s*"([^"]+)"\s*,\s*"gtin"\s*:\s*"([0-9]{10,14})"/g;
+  let m;
+  while ((m = re.exec(raw)) !== null) {
+    const k = m[1] + m[2];
+    if (!seen.has(k)) { seen.add(k); skus.push({ size: m[1], gtin: m[2] }); }
+  }
+
+  if (!skus.length) {
+    setStatus('✗ GTIN을 찾지 못했어요 — 소스 페이지(Ctrl+U)에서 복사했는지 확인해주세요', 'error');
+    return;
+  }
+
+  const nameMatch = raw.match(/"name"\s*:\s*"([^"]{5,80})"/);
+  const name = nameMatch ? nameMatch[1].split(' - ')[0] : code;
+
+  document.querySelector('.empty-state')?.remove();
+  renderResult(code, 'nike', name, skus);
+  document.getElementById('nike-source').value = '';
+  setStatus('✓ ' + code + ' — ' + skus.length + '개 사이즈 완료', 'ok');
+}
+
+// ── 렌더링 ──────────────────────────────
+function renderResult(code, brand, name, skus) {
   const container = document.getElementById('results');
-  document.getElementById(`card-${code}`)?.remove();
+  document.getElementById(`card-${code}-${brand}`)?.remove();
 
   const rows = skus.map(s => `
     <tr>
@@ -178,17 +298,17 @@ function renderResult(code, name, skus) {
 
   const card = document.createElement('div');
   card.className = 'result-card';
-  card.id = `card-${code}`;
+  card.id = `card-${code}-${brand}`;
   card.innerHTML = `
     <div class="card-header">
       <div class="card-header-left">
         <span class="product-name">${name}</span>
-        <span class="badge badge-adidas">ADIDAS</span>
+        <span class="badge badge-${brand}">${brand.toUpperCase()}</span>
         <span class="badge badge-count">${skus.length} SIZES</span>
       </div>
       <div class="card-btns">
-        <button class="btn btn-ghost btn-sm" onclick="copyAll('${code}')">전체복사</button>
-        <button class="btn btn-ghost btn-sm" onclick="copyCSV('${code}')">CSV</button>
+        <button class="btn btn-ghost btn-sm" onclick="copyAll('${code}','${brand}')">전체복사</button>
+        <button class="btn btn-ghost btn-sm" onclick="copyCSV('${code}','${brand}')">CSV</button>
       </div>
     </div>
     <table>
@@ -200,40 +320,29 @@ function renderResult(code, name, skus) {
       <tbody>${rows}</tbody>
     </table>`;
   container.prepend(card);
-  allData[code] = { name, skus };
-}
-
-function setStatus(msg, type) {
-  const el = document.getElementById('status');
-  el.textContent = msg;
-  el.className = 'status' + (type ? ' ' + type : '');
+  allData[`${code}-${brand}`] = { name, brand, skus };
 }
 
 function copySingle(btn, gtin) {
   if (!gtin || gtin === '-') return;
   navigator.clipboard.writeText(gtin).then(() => {
-    btn.textContent = '✓';
-    btn.classList.add('copied');
+    btn.textContent = '✓'; btn.classList.add('copied');
     setTimeout(() => { btn.textContent = '복사'; btn.classList.remove('copied'); }, 1500);
   });
 }
 
-function copyAll(code) {
-  const d = allData[code]; if (!d) return;
+function copyAll(code, brand) {
+  const d = allData[`${code}-${brand}`]; if (!d) return;
   navigator.clipboard.writeText(d.skus.map(s => `${s.size}\t${s.gtin}`).join('\n'));
-  setStatus('✓ 클립보드에 복사됨 (탭 구분)', 'ok');
+  setStatus('✓ 클립보드에 복사됨', 'ok');
 }
 
-function copyCSV(code) {
-  const d = allData[code]; if (!d) return;
-  const rows = d.skus.map(s => `${code},ADIDAS,${d.name},${s.size},${s.gtin}`).join('\n');
+function copyCSV(code, brand) {
+  const d = allData[`${code}-${brand}`]; if (!d) return;
+  const rows = d.skus.map(s => `${code},${brand.toUpperCase()},${d.name},${s.size},${s.gtin}`).join('\n');
   navigator.clipboard.writeText('품번,브랜드,상품명,사이즈,GTIN\n' + rows);
   setStatus('✓ CSV 형식으로 복사됨', 'ok');
 }
-
-document.getElementById('codeInput').addEventListener('keydown', e => {
-  if (e.key === 'Enter') openAPI();
-});
 </script>
 </body>
 </html>
