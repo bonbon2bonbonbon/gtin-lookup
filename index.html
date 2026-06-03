@@ -6,350 +6,86 @@
 <title>GTIN 조회 도구</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+KR:wght@400;500;700&display=swap');
-
   :root {
-    --bg: #0f0f0f;
-    --bg2: #1a1a1a;
-    --bg3: #242424;
-    --border: #2e2e2e;
-    --text: #e8e8e8;
-    --text2: #888;
-    --text3: #555;
-    --accent: #00d4aa;
-    --accent2: #00a882;
-    --danger: #ff4444;
-    --warning: #ffaa00;
-    --success: #00d4aa;
-    --adidas: #00d4aa;
-    --nike: #f5f5f5;
-    --nb: #cf4520;
-    --fj: #1a3a5c;
+    --bg:#0f0f0f;--bg2:#1a1a1a;--bg3:#242424;--border:#2e2e2e;
+    --text:#e8e8e8;--text2:#888;--text3:#555;
+    --accent:#00d4aa;--accent2:#00a882;--danger:#ff4444;--warning:#ffaa00;
   }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 14px;
-    min-height: 100vh;
-  }
-
-  .header {
-    border-bottom: 1px solid var(--border);
-    padding: 20px 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .header-logo {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--accent);
-    letter-spacing: -0.5px;
-  }
-
-  .header-sub {
-    font-size: 12px;
-    color: var(--text3);
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  .main { max-width: 900px; margin: 0 auto; padding: 32px 24px; }
-
-  /* 브랜드 탭 */
-  .brand-tabs {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-  }
-
-  .tab {
-    height: 36px;
-    padding: 0 16px;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    font-size: 13px;
-    cursor: pointer;
-    background: var(--bg2);
-    color: var(--text2);
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-    transition: all 0.15s;
-    display: flex;
-    align-items: center;
-    gap: 7px;
-  }
-
-  .tab:hover { border-color: #444; color: var(--text); }
-
-  .tab.active-adidas { background: #001a15; border-color: var(--adidas); color: var(--adidas); }
-  .tab.active-nike { background: #1a1a1a; border-color: var(--nike); color: var(--nike); }
-  .tab.active-nb { background: #2a0a00; border-color: var(--nb); color: var(--nb); }
-  .tab.active-fj { background: #0a1525; border-color: #4a8ab5; color: #4a8ab5; }
-
-  .dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
-  .dot-adidas { background: var(--adidas); }
-  .dot-nike { background: var(--nike); }
-  .dot-nb { background: var(--nb); }
-  .dot-fj { background: #4a8ab5; }
-
-  /* 입력 영역 */
-  .input-area {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-
-  .input-label {
-    font-size: 11px;
-    color: var(--text3);
-    font-family: 'IBM Plex Mono', monospace;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
-  }
-
-  .input-row { display: flex; gap: 8px; }
-
-  .input-row input {
-    flex: 1;
-    height: 42px;
-    padding: 0 14px;
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    color: var(--text);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    outline: none;
-    transition: border-color 0.15s;
-  }
-
-  .input-row input:focus { border-color: var(--accent); }
-  .input-row input::placeholder { color: var(--text3); font-weight: 400; letter-spacing: 0; }
-
-  .btn {
-    height: 42px;
-    padding: 0 18px;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    font-size: 13px;
-    cursor: pointer;
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: 600;
-    transition: all 0.15s;
-    white-space: nowrap;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: #000;
-    border-color: var(--accent);
-  }
-  .btn-primary:hover { background: var(--accent2); border-color: var(--accent2); }
-
-  .btn-ghost {
-    background: transparent;
-    color: var(--text3);
-  }
-  .btn-ghost:hover { color: var(--text); border-color: #444; }
-
-  .btn-sm { height: 30px; padding: 0 12px; font-size: 11px; }
-
-  .hint {
-    font-size: 11px;
-    color: var(--text3);
-    margin-top: 8px;
-    line-height: 1.6;
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  /* 상태 */
-  .status {
-    font-size: 12px;
-    font-family: 'IBM Plex Mono', monospace;
-    min-height: 18px;
-    margin-bottom: 12px;
-  }
-  .status.loading { color: var(--accent); }
-  .status.error { color: var(--danger); }
-  .status.ok { color: var(--success); }
-
-  /* 결과 카드 */
-  .result-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 12px;
-    animation: fadeIn 0.2s ease;
-  }
-
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
-
-  .card-header {
-    padding: 12px 16px;
-    background: var(--bg3);
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  .card-header-left { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-
-  .product-name {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text);
-  }
-
-  .badge {
-    font-size: 10px;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: 600;
-    border: 1px solid;
-  }
-
-  .badge-brand-adidas { background: #001a15; border-color: var(--adidas); color: var(--adidas); }
-  .badge-brand-nike { background: #1a1a1a; border-color: #aaa; color: #ccc; }
-  .badge-brand-nb { background: #2a0a00; border-color: var(--nb); color: var(--nb); }
-  .badge-brand-fj { background: #0a1525; border-color: #4a8ab5; color: #4a8ab5; }
-  .badge-count { background: #001a15; border-color: var(--accent); color: var(--accent); }
-  .badge-warn { background: #1a1200; border-color: var(--warning); color: var(--warning); }
-
-  .card-btns { display: flex; gap: 6px; }
-
-  table { width: 100%; border-collapse: collapse; }
-
-  th {
-    padding: 8px 16px;
-    text-align: left;
-    color: var(--text3);
-    font-size: 10px;
-    font-family: 'IBM Plex Mono', monospace;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-bottom: 1px solid var(--border);
-    background: var(--bg3);
-    font-weight: 600;
-  }
-
-  td {
-    padding: 9px 16px;
-    border-bottom: 1px solid var(--border);
-    font-size: 13px;
-  }
-
-  tr:last-child td { border-bottom: none; }
-  tr:hover td { background: rgba(255,255,255,0.02); }
-
-  .size-cell { color: var(--text2); font-weight: 500; }
-
-  .gtin-cell {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    color: var(--text);
-    letter-spacing: 0.5px;
-  }
-
-  .copy-btn {
-    height: 24px;
-    padding: 0 8px;
-    font-size: 10px;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    cursor: pointer;
-    background: transparent;
-    color: var(--text3);
-    font-family: 'IBM Plex Mono', monospace;
-    transition: all 0.15s;
-  }
-  .copy-btn:hover { color: var(--text); border-color: #444; }
-  .copy-btn.copied { color: var(--success); border-color: var(--success); }
-
-  .manual-box {
-    padding: 28px 20px;
-    text-align: center;
-    color: var(--text3);
-    line-height: 1.9;
-    font-size: 13px;
-  }
-
-  .manual-box code {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    padding: 2px 7px;
-    border-radius: 4px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    color: var(--text2);
-  }
-
-  .manual-link {
-    color: var(--accent);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 8px;
-  }
-  .manual-link:hover { text-decoration: underline; }
-
-  .empty-state {
-    padding: 48px 20px;
-    text-align: center;
-    color: var(--text3);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    border: 1px dashed var(--border);
-    border-radius: 10px;
-    line-height: 2;
-  }
-
-  .empty-state .big { font-size: 28px; margin-bottom: 12px; display: block; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;font-size:14px;min-height:100vh}
+  .header{border-bottom:1px solid var(--border);padding:20px 24px}
+  .header-logo{font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600;color:var(--accent)}
+  .header-sub{font-size:12px;color:var(--text3);font-family:'IBM Plex Mono',monospace;margin-top:3px}
+  .main{max-width:900px;margin:0 auto;padding:32px 24px}
+  .brand-tabs{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap}
+  .tab{height:36px;padding:0 16px;border:1px solid var(--border);border-radius:6px;font-size:13px;cursor:pointer;background:var(--bg2);color:var(--text2);font-family:'IBM Plex Mono',monospace;font-weight:600;transition:all 0.15s;display:flex;align-items:center;gap:7px}
+  .tab:hover{border-color:#444;color:var(--text)}
+  .tab.active-adidas{background:#001a15;border-color:var(--accent);color:var(--accent)}
+  .tab.active-nike{background:#1a1a1a;border-color:#f5f5f5;color:#f5f5f5}
+  .tab.active-nb{background:#2a0a00;border-color:#cf4520;color:#cf4520}
+  .tab.active-fj{background:#0a1525;border-color:#4a8ab5;color:#4a8ab5}
+  .dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0}
+  .dot-adidas{background:var(--accent)}.dot-nike{background:#f5f5f5}.dot-nb{background:#cf4520}.dot-fj{background:#4a8ab5}
+  .input-area{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+  .input-label{font-size:11px;color:var(--text3);font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+  .input-row{display:flex;gap:8px}
+  .input-row input{flex:1;height:42px;padding:0 14px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600;letter-spacing:1px;outline:none;transition:border-color 0.15s}
+  .input-row input:focus{border-color:var(--accent)}
+  .input-row input::placeholder{color:var(--text3);font-weight:400;letter-spacing:0}
+  .btn{height:42px;padding:0 18px;border:1px solid var(--border);border-radius:6px;font-size:13px;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:600;transition:all 0.15s;white-space:nowrap}
+  .btn-primary{background:var(--accent);color:#000;border-color:var(--accent)}
+  .btn-primary:hover{background:var(--accent2);border-color:var(--accent2)}
+  .btn-ghost{background:transparent;color:var(--text3)}
+  .btn-ghost:hover{color:var(--text);border-color:#444}
+  .btn-sm{height:30px;padding:0 12px;font-size:11px}
+  .hint{font-size:11px;color:var(--text3);margin-top:8px;line-height:1.6;font-family:'IBM Plex Mono',monospace}
+  .status{font-size:12px;font-family:'IBM Plex Mono',monospace;min-height:18px;margin-bottom:12px}
+  .status.loading{color:var(--accent)}.status.error{color:var(--danger)}.status.ok{color:var(--accent)}
+  .result-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:12px;animation:fadeIn 0.2s ease}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+  .card-header{padding:12px 16px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .card-header-left{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .product-name{font-size:13px;font-weight:700;color:var(--text)}
+  .badge{font-size:10px;padding:2px 8px;border-radius:4px;font-family:'IBM Plex Mono',monospace;font-weight:600;border:1px solid}
+  .badge-brand-adidas{background:#001a15;border-color:var(--accent);color:var(--accent)}
+  .badge-brand-nike{background:#1a1a1a;border-color:#aaa;color:#ccc}
+  .badge-brand-nb{background:#2a0a00;border-color:#cf4520;color:#cf4520}
+  .badge-brand-fj{background:#0a1525;border-color:#4a8ab5;color:#4a8ab5}
+  .badge-count{background:#001a15;border-color:var(--accent);color:var(--accent)}
+  .badge-warn{background:#1a1200;border-color:var(--warning);color:var(--warning)}
+  .card-btns{display:flex;gap:6px}
+  table{width:100%;border-collapse:collapse}
+  th{padding:8px 16px;text-align:left;color:var(--text3);font-size:10px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--border);background:var(--bg3);font-weight:600}
+  td{padding:9px 16px;border-bottom:1px solid var(--border);font-size:13px}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:rgba(255,255,255,0.02)}
+  .size-cell{color:var(--text2);font-weight:500}
+  .gtin-cell{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--text);letter-spacing:0.5px}
+  .copy-btn{height:24px;padding:0 8px;font-size:10px;border:1px solid var(--border);border-radius:4px;cursor:pointer;background:transparent;color:var(--text3);font-family:'IBM Plex Mono',monospace;transition:all 0.15s}
+  .copy-btn:hover{color:var(--text);border-color:#444}
+  .copy-btn.copied{color:var(--accent);border-color:var(--accent)}
+  .manual-box{padding:28px 20px;text-align:center;color:var(--text3);line-height:1.9;font-size:13px}
+  .manual-box code{background:var(--bg3);border:1px solid var(--border);padding:2px 7px;border-radius:4px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text2)}
+  .manual-link{color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:12px;text-decoration:none;display:inline-block;margin-top:8px}
+  .manual-link:hover{text-decoration:underline}
+  .empty-state{padding:48px 20px;text-align:center;color:var(--text3);font-family:'IBM Plex Mono',monospace;font-size:12px;border:1px dashed var(--border);border-radius:10px;line-height:2}
+  .empty-state .big{font-size:28px;margin-bottom:12px;display:block}
 </style>
 </head>
 <body>
-
 <div class="header">
   <div>
     <div class="header-logo">GTIN LOOKUP</div>
     <div class="header-sub">브랜드별 사이즈별 GTIN(EAN) 자동 조회 — 쿠팡 등록용</div>
   </div>
 </div>
-
 <div class="main">
-
-  <div class="brand-tabs" id="brandTabs">
-    <button class="tab active-adidas" onclick="selectBrand('adidas',this)">
-      <span class="dot dot-adidas"></span>아디다스
-    </button>
-    <button class="tab" onclick="selectBrand('nike',this)">
-      <span class="dot dot-nike"></span>나이키
-    </button>
-    <button class="tab" onclick="selectBrand('nb',this)">
-      <span class="dot dot-nb"></span>뉴발란스
-    </button>
-    <button class="tab" onclick="selectBrand('fj',this)">
-      <span class="dot dot-fj"></span>풋조이
-    </button>
+  <div class="brand-tabs">
+    <button class="tab active-adidas" onclick="selectBrand('adidas',this)"><span class="dot dot-adidas"></span>아디다스</button>
+    <button class="tab" onclick="selectBrand('nike',this)"><span class="dot dot-nike"></span>나이키</button>
+    <button class="tab" onclick="selectBrand('nb',this)"><span class="dot dot-nb"></span>뉴발란스</button>
+    <button class="tab" onclick="selectBrand('fj',this)"><span class="dot dot-fj"></span>풋조이</button>
   </div>
-
   <div class="input-area">
     <div class="input-label" id="inputLabel">ADIDAS — 품번 입력</div>
     <div class="input-row">
@@ -359,161 +95,130 @@
     </div>
     <div class="hint" id="brandHint">adidas.co.kr/api/products/{품번} 직접 호출 — 사이즈별 GTIN 자동 추출</div>
   </div>
-
   <div class="status" id="status"></div>
   <div id="results">
     <div class="empty-state">
       <span class="big">📦</span>
-      품번을 입력하고 조회하면<br>
-      사이즈별 GTIN이 여기에 표시됩니다
+      품번을 입력하고 조회하면<br>사이즈별 GTIN이 여기에 표시됩니다
     </div>
   </div>
-
 </div>
-
 <script>
 const BRANDS = {
-  adidas: {
-    label: 'ADIDAS — 품번 입력',
-    hint: 'adidas.co.kr/api/products/{품번} 직접 호출 — 사이즈별 GTIN 자동 추출',
-    placeholder: 'KC9165',
-    fetch: fetchAdidas
-  },
-  nike: {
-    label: 'NIKE — 스타일코드 입력',
-    hint: '페이지 소스에서 GTIN 추출 — 조회 불가 시 수동 확인 링크 제공',
-    placeholder: 'IQ3417-101',
-    fetch: fetchNike
-  },
-  nb: {
-    label: 'NEW BALANCE — 품번 입력',
-    hint: '공홈 GTIN 미노출 — 쿠팡 RA번호 발급 안내',
-    placeholder: 'ML574EVG',
-    fetch: fetchNB
-  },
-  fj: {
-    label: 'FOOTJOY — 스타일번호 입력',
-    hint: '공홈 GTIN 미노출 — 쿠팡 RA번호 발급 안내',
-    placeholder: '53079',
-    fetch: fetchFJ
-  }
+  adidas:{label:'ADIDAS — 품번 입력',hint:'adidas.co.kr/api/products/{품번} 직접 호출',placeholder:'KC9165',fetch:fetchAdidas},
+  nike:{label:'NIKE — 스타일코드 입력',hint:'페이지 소스에서 GTIN 추출 — 불가 시 수동 안내',placeholder:'IQ3417-101',fetch:fetchNike},
+  nb:{label:'NEW BALANCE — 품번 입력',hint:'공홈 GTIN 미노출 — 쿠팡 RA번호 발급 안내',placeholder:'ML574EVG',fetch:fetchNB},
+  fj:{label:'FOOTJOY — 스타일번호 입력',hint:'공홈 GTIN 미노출 — 쿠팡 RA번호 발급 안내',placeholder:'53079',fetch:fetchFJ}
 };
+let currentBrand='adidas';
+const allData={};
 
-let currentBrand = 'adidas';
-const allData = {};
+// CORS 프록시 목록 — 순서대로 시도
+const PROXIES = [
+  url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
+  url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+  url => `https://proxy.cors.sh/${url}`,
+  url => `https://thingproxy.freeboard.io/fetch/${url}`,
+];
+
+async function fetchWithProxy(targetUrl) {
+  for (const proxy of PROXIES) {
+    try {
+      const res = await fetch(proxy(targetUrl), {signal: AbortSignal.timeout(8000)});
+      if (res.ok) {
+        const text = await res.text();
+        if (text && text.length > 10 && !text.includes('error')) return text;
+      }
+    } catch(e) { continue; }
+  }
+  throw new Error('모든 프록시 실패');
+}
 
 function selectBrand(brand, el) {
   currentBrand = brand;
-  document.querySelectorAll('.tab').forEach(t => {
-    t.className = 'tab';
-  });
-  el.classList.add('active-' + brand);
+  document.querySelectorAll('.tab').forEach(t => t.className='tab');
+  el.classList.add('active-'+brand);
   const b = BRANDS[brand];
   document.getElementById('inputLabel').textContent = b.label;
   document.getElementById('brandHint').textContent = b.hint;
   document.getElementById('codeInput').placeholder = b.placeholder;
   document.getElementById('codeInput').value = '';
-  setStatus('', '');
+  setStatus('','');
 }
 
-function setStatus(msg, type) {
+function setStatus(msg,type) {
   const el = document.getElementById('status');
   el.textContent = msg;
-  el.className = 'status' + (type ? ' ' + type : '');
+  el.className = 'status'+(type?' '+type:'');
 }
 
 function lookup() {
   const code = document.getElementById('codeInput').value.trim().toUpperCase();
   if (!code) return;
-  // 빈 상태 제거
-  const empty = document.querySelector('.empty-state');
-  if (empty) empty.remove();
-  setStatus(code + ' 조회 중...', 'loading');
+  document.querySelector('.empty-state')?.remove();
+  setStatus(code+' 조회 중...','loading');
   BRANDS[currentBrand].fetch(code);
 }
 
-// ── 아디다스 ──────────────────────────────
 async function fetchAdidas(code) {
   try {
-    const url = `https://api.allorigins.win/raw?url=${encodeURIComponent('https://www.adidas.co.kr/api/products/'+code)}`;
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(res.status);
-    const data = await res.json();
-    const skus = (data.variation_list || []).map(s => ({
-      size: s.size, gtin: s.gtin, sku: s.sku
-    }));
-    renderResult(code, 'adidas', data.name || code, skus);
-    setStatus('✓ ' + code + ' — ' + skus.length + '개 사이즈 완료', 'ok');
-  } catch (e) {
-    setStatus('✗ 조회 실패 — 품번 확인 (' + code + ')', 'error');
+    setStatus(code+' 조회 중... (프록시 연결)','loading');
+    const text = await fetchWithProxy('https://www.adidas.co.kr/api/products/'+code);
+    const data = JSON.parse(text);
+    const skus = (data.variation_list||[]).map(s=>({size:s.size,gtin:s.gtin,sku:s.sku}));
+    if (!skus.length) throw new Error('no skus');
+    renderResult(code,'adidas',data.name||code,skus);
+    setStatus('✓ '+code+' — '+skus.length+'개 사이즈 완료','ok');
+  } catch(e) {
+    setStatus('✗ 조회 실패 — 품번 확인 ('+code+')','error');
   }
 }
 
-// ── 나이키 ──────────────────────────────
 async function fetchNike(code) {
   try {
-    const res = await fetch(
-      `https://corsproxy.io/?${encodeURIComponent('https://www.nike.com/kr/t/x/' + code)}`,
-      { headers: { Accept: 'text/html' } }
-    );
-    if (!res.ok) throw new Error(res.status);
-    const html = await res.text();
-    const skus = parseNikeGtins(html);
+    const text = await fetchWithProxy('https://www.nike.com/kr/t/x/'+code);
+    const skus = parseNikeGtins(text);
     if (!skus.length) throw new Error('no gtins');
-    const nameMatch = html.match(/"name"\s*:\s*"([^"]{5,60})"/);
-    const name = nameMatch ? nameMatch[1].split(' - ')[0] : code;
-    renderResult(code, 'nike', name, skus);
-    setStatus('✓ ' + code + ' — ' + skus.length + '개 사이즈 완료', 'ok');
-  } catch (e) {
-    setStatus('자동 조회 불가 — 수동 확인 안내', 'error');
+    const nm = text.match(/"name"\s*:\s*"([^"]{5,60})"/);
+    renderResult(code,'nike',nm?nm[1].split(' - ')[0]:code,skus);
+    setStatus('✓ '+code+' — '+skus.length+'개 사이즈 완료','ok');
+  } catch(e) {
+    setStatus('자동 조회 불가 — 수동 확인 안내','error');
     renderNikeManual(code);
   }
 }
 
 function parseNikeGtins(html) {
-  const skus = [];
-  const seen = new Set();
-  const re = /"size"\s*:\s*"([^"]+)"\s*,\s*"gtin"\s*:\s*"([0-9]{10,14})"/g;
+  const skus=[],seen=new Set();
+  const re=/"size"\s*:\s*"([^"]+)"\s*,\s*"gtin"\s*:\s*"([0-9]{10,14})"/g;
   let m;
-  while ((m = re.exec(html)) !== null) {
-    const key = m[1] + m[2];
-    if (!seen.has(key)) { seen.add(key); skus.push({ size: m[1], gtin: m[2], sku: '' }); }
-  }
+  while((m=re.exec(html))!==null){const k=m[1]+m[2];if(!seen.has(k)){seen.add(k);skus.push({size:m[1],gtin:m[2],sku:''});}}
   return skus;
 }
 
-// ── 뉴발란스 (수동 안내) ──────────────────
 async function fetchNB(code) {
-  setStatus('뉴발란스 공홈 GTIN 미노출 — RA번호 안내', 'error');
-  renderRAGuide(code, 'nb', 'NEW BALANCE',
-    `https://www.nbkorea.com/product/productDetail.action?styleCode=${code}`);
+  setStatus('뉴발란스 공홈 GTIN 미노출 — RA번호 안내','error');
+  renderRAGuide(code,'nb','NEW BALANCE',`https://www.nbkorea.com/product/productDetail.action?styleCode=${code}`);
 }
 
-// ── 풋조이 (수동 안내) ───────────────────
 async function fetchFJ(code) {
-  setStatus('풋조이 공홈 GTIN 미노출 — RA번호 안내', 'error');
-  renderRAGuide(code, 'fj', 'FOOTJOY',
-    `https://www.footjoy.co.kr/s/search?q=${code}`);
+  setStatus('풋조이 공홈 GTIN 미노출 — RA번호 안내','error');
+  renderRAGuide(code,'fj','FOOTJOY',`https://www.footjoy.co.kr/s/search?q=${code}`);
 }
 
-// ── 렌더링 ───────────────────────────────
-function renderResult(code, brand, name, skus) {
-  const container = document.getElementById('results');
+function renderResult(code,brand,name,skus) {
+  const container=document.getElementById('results');
   document.getElementById(`card-${code}-${brand}`)?.remove();
-
-  const rows = skus.map(s => `
+  const rows=skus.map(s=>`
     <tr>
       <td class="size-cell" style="width:100px">${s.size}</td>
-      <td class="gtin-cell">${s.gtin || '-'}</td>
-      <td style="width:70px;text-align:right">
-        <button class="copy-btn" onclick="copySingle(this,'${s.gtin}')">복사</button>
-      </td>
+      <td class="gtin-cell">${s.gtin||'-'}</td>
+      <td style="width:70px;text-align:right"><button class="copy-btn" onclick="copySingle(this,'${s.gtin}')">복사</button></td>
     </tr>`).join('');
-
-  const card = document.createElement('div');
-  card.className = 'result-card';
-  card.id = `card-${code}-${brand}`;
-  card.innerHTML = `
+  const card=document.createElement('div');
+  card.className='result-card';
+  card.id=`card-${code}-${brand}`;
+  card.innerHTML=`
     <div class="card-header">
       <div class="card-header-left">
         <span class="product-name">${name}</span>
@@ -526,24 +231,19 @@ function renderResult(code, brand, name, skus) {
       </div>
     </div>
     <table>
-      <thead><tr>
-        <th style="width:100px">사이즈</th>
-        <th>GTIN (EAN)</th>
-        <th style="width:70px"></th>
-      </tr></thead>
+      <thead><tr><th style="width:100px">사이즈</th><th>GTIN (EAN)</th><th style="width:70px"></th></tr></thead>
       <tbody>${rows}</tbody>
     </table>`;
   container.prepend(card);
-  allData[`${code}-${brand}`] = { name, brand, skus };
+  allData[`${code}-${brand}`]={name,brand,skus};
 }
 
 function renderNikeManual(code) {
-  const container = document.getElementById('results');
+  const container=document.getElementById('results');
   document.getElementById(`card-${code}-nike`)?.remove();
-  const card = document.createElement('div');
-  card.className = 'result-card';
-  card.id = `card-${code}-nike`;
-  card.innerHTML = `
+  const card=document.createElement('div');
+  card.className='result-card';card.id=`card-${code}-nike`;
+  card.innerHTML=`
     <div class="card-header">
       <div class="card-header-left">
         <span class="product-name">${code}</span>
@@ -557,20 +257,17 @@ function renderNikeManual(code) {
       2. <code>Ctrl+U</code> 페이지 소스 열기<br>
       3. <code>Ctrl+F</code> → <code>"gtin"</code> 검색<br>
       4. <code>"size":"10","gtin":"001987..."</code> 형태로 나옴<br><br>
-      <a class="manual-link" href="https://www.nike.com/kr/t/x/${code}" target="_blank">
-        → nike.com/kr/t/x/${code}
-      </a>
+      <a class="manual-link" href="https://www.nike.com/kr/t/x/${code}" target="_blank">→ nike.com/kr/t/x/${code}</a>
     </div>`;
   container.prepend(card);
 }
 
-function renderRAGuide(code, brand, brandName, url) {
-  const container = document.getElementById('results');
+function renderRAGuide(code,brand,brandName,url) {
+  const container=document.getElementById('results');
   document.getElementById(`card-${code}-${brand}`)?.remove();
-  const card = document.createElement('div');
-  card.className = 'result-card';
-  card.id = `card-${code}-${brand}`;
-  card.innerHTML = `
+  const card=document.createElement('div');
+  card.className='result-card';card.id=`card-${code}-${brand}`;
+  card.innerHTML=`
     <div class="card-header">
       <div class="card-header-left">
         <span class="product-name">${code}</span>
@@ -581,55 +278,41 @@ function renderRAGuide(code, brand, brandName, url) {
     <div class="manual-box">
       <b style="color:#e8e8e8">${brandName} — 쿠팡 RA번호 발급 필요</b><br><br>
       공홈에서 GTIN을 제공하지 않아요.<br>
-      쿠팡 Wing → 상품등록 → <code>바코드 없음</code> 선택<br>
-      → RA번호 자동 발급<br><br>
-      <a class="manual-link" href="${url}" target="_blank">
-        → 공홈에서 직접 확인하기
-      </a>
+      쿠팡 Wing → 상품등록 → <code>바코드 없음</code> 선택 → RA번호 자동 발급<br><br>
+      <a class="manual-link" href="${url}" target="_blank">→ 공홈에서 직접 확인하기</a>
     </div>`;
   container.prepend(card);
 }
 
-// ── 유틸 ─────────────────────────────────
-function copySingle(btn, gtin) {
-  if (!gtin || gtin === '-') return;
-  navigator.clipboard.writeText(gtin).then(() => {
-    btn.textContent = '✓';
-    btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = '복사'; btn.classList.remove('copied'); }, 1500);
+function copySingle(btn,gtin) {
+  if(!gtin||gtin==='-') return;
+  navigator.clipboard.writeText(gtin).then(()=>{
+    btn.textContent='✓';btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='복사';btn.classList.remove('copied');},1500);
   });
 }
 
-function copyAll(code, brand) {
-  const d = allData[`${code}-${brand}`];
-  if (!d) return;
-  navigator.clipboard.writeText(d.skus.map(s => `${s.size}\t${s.gtin}`).join('\n'));
-  setStatus('✓ 클립보드에 복사됨 (탭 구분)', 'ok');
+function copyAll(code,brand) {
+  const d=allData[`${code}-${brand}`];if(!d) return;
+  navigator.clipboard.writeText(d.skus.map(s=>`${s.size}\t${s.gtin}`).join('\n'));
+  setStatus('✓ 클립보드에 복사됨','ok');
 }
 
-function copyCSV(code, brand) {
-  const d = allData[`${code}-${brand}`];
-  if (!d) return;
-  const rows = d.skus.map(s => `${code},${d.brand.toUpperCase()},${d.name},${s.size},${s.gtin}`).join('\n');
-  navigator.clipboard.writeText('품번,브랜드,상품명,사이즈,GTIN\n' + rows);
-  setStatus('✓ CSV 형식으로 복사됨', 'ok');
+function copyCSV(code,brand) {
+  const d=allData[`${code}-${brand}`];if(!d) return;
+  const rows=d.skus.map(s=>`${code},${d.brand.toUpperCase()},${d.name},${s.size},${s.gtin}`).join('\n');
+  navigator.clipboard.writeText('품번,브랜드,상품명,사이즈,GTIN\n'+rows);
+  setStatus('✓ CSV 형식으로 복사됨','ok');
 }
 
 function clearAll() {
-  document.getElementById('results').innerHTML = `
-    <div class="empty-state">
-      <span class="big">📦</span>
-      품번을 입력하고 조회하면<br>
-      사이즈별 GTIN이 여기에 표시됩니다
-    </div>`;
-  document.getElementById('codeInput').value = '';
-  setStatus('', '');
-  Object.keys(allData).forEach(k => delete allData[k]);
+  document.getElementById('results').innerHTML=`<div class="empty-state"><span class="big">📦</span>품번을 입력하고 조회하면<br>사이즈별 GTIN이 여기에 표시됩니다</div>`;
+  document.getElementById('codeInput').value='';
+  setStatus('','');
+  Object.keys(allData).forEach(k=>delete allData[k]);
 }
 
-document.getElementById('codeInput').addEventListener('keydown', e => {
-  if (e.key === 'Enter') lookup();
-});
+document.getElementById('codeInput').addEventListener('keydown',e=>{if(e.key==='Enter')lookup();});
 </script>
 </body>
 </html>
