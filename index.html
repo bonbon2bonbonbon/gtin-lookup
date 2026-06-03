@@ -17,42 +17,54 @@
   .header-logo{font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600;color:var(--accent)}
   .header-sub{font-size:12px;color:var(--text3);font-family:'IBM Plex Mono',monospace;margin-top:3px}
   .main{max-width:900px;margin:0 auto;padding:32px 24px}
+
   .brand-tabs{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap}
   .tab{height:36px;padding:0 16px;border:1px solid var(--border);border-radius:6px;font-size:13px;cursor:pointer;background:var(--bg2);color:var(--text2);font-family:'IBM Plex Mono',monospace;font-weight:600;transition:all 0.15s;display:flex;align-items:center;gap:7px}
   .tab:hover{border-color:#444;color:var(--text)}
   .tab.active-adidas{background:#001a15;border-color:var(--accent);color:var(--accent)}
-  .tab.active-nike{background:#1a1a1a;border-color:#f5f5f5;color:#f5f5f5}
-  .tab.active-nb{background:#2a0a00;border-color:#cf4520;color:#cf4520}
-  .tab.active-fj{background:#0a1525;border-color:#4a8ab5;color:#4a8ab5}
   .dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0}
-  .dot-adidas{background:var(--accent)}.dot-nike{background:#f5f5f5}.dot-nb{background:#cf4520}.dot-fj{background:#4a8ab5}
-  .input-area{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
-  .input-label{font-size:11px;color:var(--text3);font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+  .dot-adidas{background:var(--accent)}
+
+  /* STEP 박스 */
+  .steps{display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
+  .step{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px 20px}
+  .step-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent);font-weight:600;letter-spacing:1px;margin-bottom:8px}
+  .step-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:10px}
+
   .input-row{display:flex;gap:8px}
   .input-row input{flex:1;height:42px;padding:0 14px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600;letter-spacing:1px;outline:none;transition:border-color 0.15s}
   .input-row input:focus{border-color:var(--accent)}
   .input-row input::placeholder{color:var(--text3);font-weight:400;letter-spacing:0}
+
   .btn{height:42px;padding:0 18px;border:1px solid var(--border);border-radius:6px;font-size:13px;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:600;transition:all 0.15s;white-space:nowrap}
   .btn-primary{background:var(--accent);color:#000;border-color:var(--accent)}
-  .btn-primary:hover{background:var(--accent2);border-color:var(--accent2)}
+  .btn-primary:hover{background:var(--accent2)}
   .btn-ghost{background:transparent;color:var(--text3)}
   .btn-ghost:hover{color:var(--text);border-color:#444}
   .btn-sm{height:30px;padding:0 12px;font-size:11px}
+  .btn-paste{height:42px;padding:0 18px;border:1px solid #444;border-radius:6px;font-size:13px;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:600;background:#1a2a20;color:var(--accent);transition:all 0.15s}
+  .btn-paste:hover{background:#002a1a}
+
+  .url-display{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);margin-top:10px;word-break:break-all;display:none}
+
   .hint{font-size:11px;color:var(--text3);margin-top:8px;line-height:1.6;font-family:'IBM Plex Mono',monospace}
+  .hint b{color:var(--text2)}
+
+  textarea{width:100%;height:120px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:12px;padding:12px;outline:none;resize:vertical;transition:border-color 0.15s;margin-bottom:10px}
+  textarea:focus{border-color:var(--accent)}
+  textarea::placeholder{color:var(--text3)}
+
   .status{font-size:12px;font-family:'IBM Plex Mono',monospace;min-height:18px;margin-bottom:12px}
-  .status.loading{color:var(--accent)}.status.error{color:var(--danger)}.status.ok{color:var(--accent)}
+  .status.error{color:var(--danger)}.status.ok{color:var(--accent)}
+
   .result-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:12px;animation:fadeIn 0.2s ease}
   @keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
   .card-header{padding:12px 16px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
   .card-header-left{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   .product-name{font-size:13px;font-weight:700;color:var(--text)}
   .badge{font-size:10px;padding:2px 8px;border-radius:4px;font-family:'IBM Plex Mono',monospace;font-weight:600;border:1px solid}
-  .badge-brand-adidas{background:#001a15;border-color:var(--accent);color:var(--accent)}
-  .badge-brand-nike{background:#1a1a1a;border-color:#aaa;color:#ccc}
-  .badge-brand-nb{background:#2a0a00;border-color:#cf4520;color:#cf4520}
-  .badge-brand-fj{background:#0a1525;border-color:#4a8ab5;color:#4a8ab5}
+  .badge-adidas{background:#001a15;border-color:var(--accent);color:var(--accent)}
   .badge-count{background:#001a15;border-color:var(--accent);color:var(--accent)}
-  .badge-warn{background:#1a1200;border-color:var(--warning);color:var(--warning)}
   .card-btns{display:flex;gap:6px}
   table{width:100%;border-collapse:collapse}
   th{padding:8px 16px;text-align:left;color:var(--text3);font-size:10px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--border);background:var(--bg3);font-weight:600}
@@ -64,255 +76,164 @@
   .copy-btn{height:24px;padding:0 8px;font-size:10px;border:1px solid var(--border);border-radius:4px;cursor:pointer;background:transparent;color:var(--text3);font-family:'IBM Plex Mono',monospace;transition:all 0.15s}
   .copy-btn:hover{color:var(--text);border-color:#444}
   .copy-btn.copied{color:var(--accent);border-color:var(--accent)}
-  .manual-box{padding:28px 20px;text-align:center;color:var(--text3);line-height:1.9;font-size:13px}
-  .manual-box code{background:var(--bg3);border:1px solid var(--border);padding:2px 7px;border-radius:4px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text2)}
-  .manual-link{color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:12px;text-decoration:none;display:inline-block;margin-top:8px}
-  .manual-link:hover{text-decoration:underline}
-  .empty-state{padding:48px 20px;text-align:center;color:var(--text3);font-family:'IBM Plex Mono',monospace;font-size:12px;border:1px dashed var(--border);border-radius:10px;line-height:2}
-  .empty-state .big{font-size:28px;margin-bottom:12px;display:block}
+  .empty-state{padding:40px 20px;text-align:center;color:var(--text3);font-family:'IBM Plex Mono',monospace;font-size:12px;border:1px dashed var(--border);border-radius:10px;line-height:2}
+  .empty-state .big{font-size:26px;margin-bottom:10px;display:block}
 </style>
 </head>
 <body>
+
 <div class="header">
   <div>
     <div class="header-logo">GTIN LOOKUP</div>
-    <div class="header-sub">브랜드별 사이즈별 GTIN(EAN) 자동 조회 — 쿠팡 등록용</div>
+    <div class="header-sub">아디다스 사이즈별 GTIN(EAN) 조회 — 쿠팡 등록용</div>
   </div>
 </div>
+
 <div class="main">
-  <div class="brand-tabs">
-    <button class="tab active-adidas" onclick="selectBrand('adidas',this)"><span class="dot dot-adidas"></span>아디다스</button>
-    <button class="tab" onclick="selectBrand('nike',this)"><span class="dot dot-nike"></span>나이키</button>
-    <button class="tab" onclick="selectBrand('nb',this)"><span class="dot dot-nb"></span>뉴발란스</button>
-    <button class="tab" onclick="selectBrand('fj',this)"><span class="dot dot-fj"></span>풋조이</button>
-  </div>
-  <div class="input-area">
-    <div class="input-label" id="inputLabel">ADIDAS — 품번 입력</div>
-    <div class="input-row">
-      <input type="text" id="codeInput" placeholder="KC9165" />
-      <button class="btn btn-primary" onclick="lookup()">조회</button>
-      <button class="btn btn-ghost" onclick="clearAll()">초기화</button>
+
+  <!-- STEP 1 -->
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">STEP 1</div>
+      <div class="step-title">품번 입력 후 API 열기</div>
+      <div class="input-row">
+        <input type="text" id="codeInput" placeholder="KC9165" />
+        <button class="btn btn-primary" onclick="openAPI()">🔗 API 열기</button>
+      </div>
+      <div class="url-display" id="urlDisplay"></div>
+      <div class="hint">버튼 클릭 시 <b>새 탭</b>에서 아디다스 API가 열려요</div>
     </div>
-    <div class="hint" id="brandHint">adidas.co.kr/api/products/{품번} 직접 호출 — 사이즈별 GTIN 자동 추출</div>
+
+    <!-- STEP 2 -->
+    <div class="step">
+      <div class="step-num">STEP 2</div>
+      <div class="step-title">열린 페이지 전체 복사 후 여기에 붙여넣기</div>
+      <textarea id="jsonInput" placeholder='새 탭에서 Ctrl+A → Ctrl+C 후 여기에 Ctrl+V'></textarea>
+      <div class="input-row">
+        <button class="btn btn-paste" onclick="parseAndRender()" style="width:100%">✨ GTIN 추출하기</button>
+      </div>
+      <div class="hint">새 탭 전체 내용을 복사해서 붙여넣으면 자동으로 표를 만들어줘요</div>
+    </div>
   </div>
+
   <div class="status" id="status"></div>
+
   <div id="results">
     <div class="empty-state">
       <span class="big">📦</span>
-      품번을 입력하고 조회하면<br>사이즈별 GTIN이 여기에 표시됩니다
+      STEP 1 → STEP 2 순서로 진행하면<br>
+      사이즈별 GTIN 표가 여기에 나와요
     </div>
   </div>
+
 </div>
+
 <script>
-const BRANDS = {
-  adidas:{label:'ADIDAS — 품번 입력',hint:'adidas.co.kr/api/products/{품번} 직접 호출',placeholder:'KC9165',fetch:fetchAdidas},
-  nike:{label:'NIKE — 스타일코드 입력',hint:'페이지 소스에서 GTIN 추출 — 불가 시 수동 안내',placeholder:'IQ3417-101',fetch:fetchNike},
-  nb:{label:'NEW BALANCE — 품번 입력',hint:'공홈 GTIN 미노출 — 쿠팡 RA번호 발급 안내',placeholder:'ML574EVG',fetch:fetchNB},
-  fj:{label:'FOOTJOY — 스타일번호 입력',hint:'공홈 GTIN 미노출 — 쿠팡 RA번호 발급 안내',placeholder:'53079',fetch:fetchFJ}
-};
-let currentBrand='adidas';
-const allData={};
+const allData = {};
 
-// CORS 프록시 목록 — 순서대로 시도
-const PROXIES = [
-  url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
-  url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
-  url => `https://proxy.cors.sh/${url}`,
-  url => `https://thingproxy.freeboard.io/fetch/${url}`,
-];
-
-async function fetchWithProxy(targetUrl) {
-  for (const proxy of PROXIES) {
-    try {
-      const res = await fetch(proxy(targetUrl), {signal: AbortSignal.timeout(8000)});
-      if (res.ok) {
-        const text = await res.text();
-        if (text && text.length > 10 && !text.includes('error')) return text;
-      }
-    } catch(e) { continue; }
-  }
-  throw new Error('모든 프록시 실패');
-}
-
-function selectBrand(brand, el) {
-  currentBrand = brand;
-  document.querySelectorAll('.tab').forEach(t => t.className='tab');
-  el.classList.add('active-'+brand);
-  const b = BRANDS[brand];
-  document.getElementById('inputLabel').textContent = b.label;
-  document.getElementById('brandHint').textContent = b.hint;
-  document.getElementById('codeInput').placeholder = b.placeholder;
-  document.getElementById('codeInput').value = '';
-  setStatus('','');
-}
-
-function setStatus(msg,type) {
-  const el = document.getElementById('status');
-  el.textContent = msg;
-  el.className = 'status'+(type?' '+type:'');
-}
-
-function lookup() {
+function openAPI() {
   const code = document.getElementById('codeInput').value.trim().toUpperCase();
-  if (!code) return;
-  document.querySelector('.empty-state')?.remove();
-  setStatus(code+' 조회 중...','loading');
-  BRANDS[currentBrand].fetch(code);
+  if (!code) { alert('품번을 입력해주세요'); return; }
+  const url = `https://www.adidas.co.kr/api/products/${code}`;
+  document.getElementById('urlDisplay').style.display = 'block';
+  document.getElementById('urlDisplay').textContent = url;
+  window.open(url, '_blank');
+  setStatus('✓ 새 탭에서 API 열렸어요 — 전체 복사 후 STEP 2에 붙여넣기', 'ok');
 }
 
-async function fetchAdidas(code) {
+function parseAndRender() {
+  const raw = document.getElementById('jsonInput').value.trim();
+  if (!raw) { setStatus('✗ 데이터를 붙여넣어주세요', 'error'); return; }
+
   try {
-    setStatus(code+' 조회 중... (프록시 연결)','loading');
-    const text = await fetchWithProxy('https://www.adidas.co.kr/api/products/'+code);
-    const data = JSON.parse(text);
-    const skus = (data.variation_list||[]).map(s=>({size:s.size,gtin:s.gtin,sku:s.sku}));
-    if (!skus.length) throw new Error('no skus');
-    renderResult(code,'adidas',data.name||code,skus);
-    setStatus('✓ '+code+' — '+skus.length+'개 사이즈 완료','ok');
+    const data = JSON.parse(raw);
+    const code = data.id || document.getElementById('codeInput').value.trim().toUpperCase();
+    const name = data.name || code;
+    const skus = (data.variation_list || []).map(s => ({
+      size: s.size, gtin: s.gtin, sku: s.sku
+    }));
+    if (!skus.length) throw new Error('variation_list 없음');
+
+    document.querySelector('.empty-state')?.remove();
+    renderResult(code, name, skus);
+    document.getElementById('jsonInput').value = '';
+    setStatus('✓ ' + code + ' — ' + skus.length + '개 사이즈 완료', 'ok');
   } catch(e) {
-    setStatus('✗ 조회 실패 — 품번 확인 ('+code+')','error');
+    setStatus('✗ 데이터 형식 오류 — 새 탭 전체(Ctrl+A)를 복사했는지 확인해주세요', 'error');
   }
 }
 
-async function fetchNike(code) {
-  try {
-    const text = await fetchWithProxy('https://www.nike.com/kr/t/x/'+code);
-    const skus = parseNikeGtins(text);
-    if (!skus.length) throw new Error('no gtins');
-    const nm = text.match(/"name"\s*:\s*"([^"]{5,60})"/);
-    renderResult(code,'nike',nm?nm[1].split(' - ')[0]:code,skus);
-    setStatus('✓ '+code+' — '+skus.length+'개 사이즈 완료','ok');
-  } catch(e) {
-    setStatus('자동 조회 불가 — 수동 확인 안내','error');
-    renderNikeManual(code);
-  }
-}
+function renderResult(code, name, skus) {
+  const container = document.getElementById('results');
+  document.getElementById(`card-${code}`)?.remove();
 
-function parseNikeGtins(html) {
-  const skus=[],seen=new Set();
-  const re=/"size"\s*:\s*"([^"]+)"\s*,\s*"gtin"\s*:\s*"([0-9]{10,14})"/g;
-  let m;
-  while((m=re.exec(html))!==null){const k=m[1]+m[2];if(!seen.has(k)){seen.add(k);skus.push({size:m[1],gtin:m[2],sku:''});}}
-  return skus;
-}
-
-async function fetchNB(code) {
-  setStatus('뉴발란스 공홈 GTIN 미노출 — RA번호 안내','error');
-  renderRAGuide(code,'nb','NEW BALANCE',`https://www.nbkorea.com/product/productDetail.action?styleCode=${code}`);
-}
-
-async function fetchFJ(code) {
-  setStatus('풋조이 공홈 GTIN 미노출 — RA번호 안내','error');
-  renderRAGuide(code,'fj','FOOTJOY',`https://www.footjoy.co.kr/s/search?q=${code}`);
-}
-
-function renderResult(code,brand,name,skus) {
-  const container=document.getElementById('results');
-  document.getElementById(`card-${code}-${brand}`)?.remove();
-  const rows=skus.map(s=>`
+  const rows = skus.map(s => `
     <tr>
       <td class="size-cell" style="width:100px">${s.size}</td>
-      <td class="gtin-cell">${s.gtin||'-'}</td>
-      <td style="width:70px;text-align:right"><button class="copy-btn" onclick="copySingle(this,'${s.gtin}')">복사</button></td>
+      <td class="gtin-cell">${s.gtin || '-'}</td>
+      <td style="width:70px;text-align:right">
+        <button class="copy-btn" onclick="copySingle(this,'${s.gtin}')">복사</button>
+      </td>
     </tr>`).join('');
-  const card=document.createElement('div');
-  card.className='result-card';
-  card.id=`card-${code}-${brand}`;
-  card.innerHTML=`
+
+  const card = document.createElement('div');
+  card.className = 'result-card';
+  card.id = `card-${code}`;
+  card.innerHTML = `
     <div class="card-header">
       <div class="card-header-left">
         <span class="product-name">${name}</span>
-        <span class="badge badge-brand-${brand}">${brand.toUpperCase()}</span>
+        <span class="badge badge-adidas">ADIDAS</span>
         <span class="badge badge-count">${skus.length} SIZES</span>
       </div>
       <div class="card-btns">
-        <button class="btn btn-ghost btn-sm" onclick="copyAll('${code}','${brand}')">전체복사</button>
-        <button class="btn btn-ghost btn-sm" onclick="copyCSV('${code}','${brand}')">CSV</button>
+        <button class="btn btn-ghost btn-sm" onclick="copyAll('${code}')">전체복사</button>
+        <button class="btn btn-ghost btn-sm" onclick="copyCSV('${code}')">CSV</button>
       </div>
     </div>
     <table>
-      <thead><tr><th style="width:100px">사이즈</th><th>GTIN (EAN)</th><th style="width:70px"></th></tr></thead>
+      <thead><tr>
+        <th style="width:100px">사이즈</th>
+        <th>GTIN (EAN)</th>
+        <th style="width:70px"></th>
+      </tr></thead>
       <tbody>${rows}</tbody>
     </table>`;
   container.prepend(card);
-  allData[`${code}-${brand}`]={name,brand,skus};
+  allData[code] = { name, skus };
 }
 
-function renderNikeManual(code) {
-  const container=document.getElementById('results');
-  document.getElementById(`card-${code}-nike`)?.remove();
-  const card=document.createElement('div');
-  card.className='result-card';card.id=`card-${code}-nike`;
-  card.innerHTML=`
-    <div class="card-header">
-      <div class="card-header-left">
-        <span class="product-name">${code}</span>
-        <span class="badge badge-brand-nike">NIKE</span>
-        <span class="badge badge-warn">수동확인</span>
-      </div>
-    </div>
-    <div class="manual-box">
-      <b style="color:#e8e8e8">나이키 GTIN 수동 확인 방법</b><br><br>
-      1. 아래 링크에서 상품 페이지 열기<br>
-      2. <code>Ctrl+U</code> 페이지 소스 열기<br>
-      3. <code>Ctrl+F</code> → <code>"gtin"</code> 검색<br>
-      4. <code>"size":"10","gtin":"001987..."</code> 형태로 나옴<br><br>
-      <a class="manual-link" href="https://www.nike.com/kr/t/x/${code}" target="_blank">→ nike.com/kr/t/x/${code}</a>
-    </div>`;
-  container.prepend(card);
+function setStatus(msg, type) {
+  const el = document.getElementById('status');
+  el.textContent = msg;
+  el.className = 'status' + (type ? ' ' + type : '');
 }
 
-function renderRAGuide(code,brand,brandName,url) {
-  const container=document.getElementById('results');
-  document.getElementById(`card-${code}-${brand}`)?.remove();
-  const card=document.createElement('div');
-  card.className='result-card';card.id=`card-${code}-${brand}`;
-  card.innerHTML=`
-    <div class="card-header">
-      <div class="card-header-left">
-        <span class="product-name">${code}</span>
-        <span class="badge badge-brand-${brand}">${brandName}</span>
-        <span class="badge badge-warn">RA번호 필요</span>
-      </div>
-    </div>
-    <div class="manual-box">
-      <b style="color:#e8e8e8">${brandName} — 쿠팡 RA번호 발급 필요</b><br><br>
-      공홈에서 GTIN을 제공하지 않아요.<br>
-      쿠팡 Wing → 상품등록 → <code>바코드 없음</code> 선택 → RA번호 자동 발급<br><br>
-      <a class="manual-link" href="${url}" target="_blank">→ 공홈에서 직접 확인하기</a>
-    </div>`;
-  container.prepend(card);
-}
-
-function copySingle(btn,gtin) {
-  if(!gtin||gtin==='-') return;
-  navigator.clipboard.writeText(gtin).then(()=>{
-    btn.textContent='✓';btn.classList.add('copied');
-    setTimeout(()=>{btn.textContent='복사';btn.classList.remove('copied');},1500);
+function copySingle(btn, gtin) {
+  if (!gtin || gtin === '-') return;
+  navigator.clipboard.writeText(gtin).then(() => {
+    btn.textContent = '✓';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '복사'; btn.classList.remove('copied'); }, 1500);
   });
 }
 
-function copyAll(code,brand) {
-  const d=allData[`${code}-${brand}`];if(!d) return;
-  navigator.clipboard.writeText(d.skus.map(s=>`${s.size}\t${s.gtin}`).join('\n'));
-  setStatus('✓ 클립보드에 복사됨','ok');
+function copyAll(code) {
+  const d = allData[code]; if (!d) return;
+  navigator.clipboard.writeText(d.skus.map(s => `${s.size}\t${s.gtin}`).join('\n'));
+  setStatus('✓ 클립보드에 복사됨 (탭 구분)', 'ok');
 }
 
-function copyCSV(code,brand) {
-  const d=allData[`${code}-${brand}`];if(!d) return;
-  const rows=d.skus.map(s=>`${code},${d.brand.toUpperCase()},${d.name},${s.size},${s.gtin}`).join('\n');
-  navigator.clipboard.writeText('품번,브랜드,상품명,사이즈,GTIN\n'+rows);
-  setStatus('✓ CSV 형식으로 복사됨','ok');
+function copyCSV(code) {
+  const d = allData[code]; if (!d) return;
+  const rows = d.skus.map(s => `${code},ADIDAS,${d.name},${s.size},${s.gtin}`).join('\n');
+  navigator.clipboard.writeText('품번,브랜드,상품명,사이즈,GTIN\n' + rows);
+  setStatus('✓ CSV 형식으로 복사됨', 'ok');
 }
 
-function clearAll() {
-  document.getElementById('results').innerHTML=`<div class="empty-state"><span class="big">📦</span>품번을 입력하고 조회하면<br>사이즈별 GTIN이 여기에 표시됩니다</div>`;
-  document.getElementById('codeInput').value='';
-  setStatus('','');
-  Object.keys(allData).forEach(k=>delete allData[k]);
-}
-
-document.getElementById('codeInput').addEventListener('keydown',e=>{if(e.key==='Enter')lookup();});
+document.getElementById('codeInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') openAPI();
+});
 </script>
 </body>
 </html>
