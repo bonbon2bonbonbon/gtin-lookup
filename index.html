@@ -435,9 +435,8 @@ function lookup() {
 // ── 아디다스 ──────────────────────────────
 async function fetchAdidas(code) {
   try {
-    const res = await fetch(`https://corsproxy.io/?https://www.adidas.co.kr/api/products/${code}`, {
-      headers: { Accept: 'application/json' }
-    });
+    const url = `https://api.allorigins.win/raw?url=${encodeURIComponent('https://www.adidas.co.kr/api/products/'+code)}`;
+    const res = await fetch(url);
     if (!res.ok) throw new Error(res.status);
     const data = await res.json();
     const skus = (data.variation_list || []).map(s => ({
